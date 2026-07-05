@@ -2,7 +2,7 @@
 <html lang="fr">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Robot ESP32 S3 ZERO — Schéma de câblage</title>
+<title>ESP32 S3 ZERO — Robot Câblage Complet</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -13,281 +13,386 @@
     justify-content: center;
     padding: 20px;
   }
-  .container {
-    max-width: 1100px;
-    width: 100%;
-  }
+  .container { max-width: 1200px; width: 100%; }
   .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 12px;
-    padding: 0 4px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 12px; padding: 0 4px;
   }
   .header h1 { font-size: 18px; font-weight: 600; color: #58a6ff; }
   .header span { font-size: 12px; color: #8b949e; }
   svg { width: 100%; height: auto; display: block; border-radius: 8px; }
-  .footer {
-    margin-top: 10px;
-    padding: 0 4px;
-    font-size: 11px;
-    color: #484f58;
+  .footer { margin-top: 10px; padding: 0 4px; font-size: 11px; color: #484f58; }
+  @media (max-width: 600px) {
+    body { padding: 8px; }
+    .header h1 { font-size: 14px; }
   }
 </style>
 <div class="container">
   <div class="header">
-    <h1>🤖 Robot ESP32 S3 ZERO — Schéma de câblage</h1>
-    <span>Généré par Bob</span>
+    <h1>🔌 ESP32 S3 ZERO — Schéma de câblage complet</h1>
+    <span>v2 par Bob 🤖</span>
   </div>
 
-<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" style="background:#0d1117;">
+<svg viewBox="0 0 1100 900" xmlns="http://www.w3.org/2000/svg" style="background:#0d1117;">
   <defs>
-    <filter id="glow-warn"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/></filter>
-    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f85149"/></marker>
-    <marker id="arr-gry" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8b949e"/></marker>
-    <marker id="arr-blu" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#58a6ff"/></marker>
-    <marker id="arr-orn" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#d29922"/></marker>
-    <marker id="arr-grn" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3fb950"/></marker>
-    <marker id="arr-ppl" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#bc8cff"/></marker>
-
-    <!-- Gradient filigrane -->
-    <radialGradient id="bg-grad" cx="40%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#161b22"/>
-      <stop offset="100%" stop-color="#0d1117"/>
+    <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.6"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arr-red" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#f85149"/></marker>
+    <marker id="arr-gry" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#8b949e"/></marker>
+    <marker id="arr-blu" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#58a6ff"/></marker>
+    <marker id="arr-orn" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#d29922"/></marker>
+    <marker id="arr-grn" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#3fb950"/></marker>
+    <marker id="arr-ppl" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4 Z" fill="#bc8cff"/></marker>
+    <radialGradient id="bg" cx="40%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#161b22"/><stop offset="100%" stop-color="#0d1117"/>
     </radialGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="1000" height="720" fill="url(#bg-grad)" rx="4"/>
-
-  <!-- Grille subtile -->
-  <g opacity="0.04" stroke="#58a6ff" stroke-width="0.3">
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none"/>
+  <rect width="1100" height="900" fill="url(#bg)" rx="4"/>
+  <g opacity="0.03" stroke="#58a6ff" stroke-width="0.3">
+    <pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none"/>
     </pattern>
-    <rect width="1000" height="720" fill="url(#grid)"/>
+    <rect width="1100" height="900" fill="url(#g)"/>
   </g>
 
   <!-- ============================================================ -->
-  <!-- WIRES (drawn first so they sit behind components)             -->
+  <!-- WIRES — tirés d'abord pour être derrière les composants       -->
   <!-- ============================================================ -->
 
-  <!-- HC-SR04 → ESP32 -->
-  <path d="M220,530 L220,440 L340,440 L340,370" stroke="#d29922" stroke-width="1.5" fill="none" marker-end="url(#arr-orn)"/>
-  <path d="M280,530 L280,440 L380,440 L380,370" stroke="#d29922" stroke-width="1.5" fill="none" marker-end="url(#arr-orn)"/>
-  <text x="270" y="498" fill="#d29922" font-size="10">ECHO → GPIO4</text>
-  <text x="310" y="520" fill="#d29922" font-size="10">TRIG → GPIO5</text>
+  <!-- ─── HC-SR04 → ESP32 ─── -->
+  <!-- VCC (rouge) HC-SR04 → 3V3 ESP -->
+  <path d="M 180,620 L 180,580 L 120,580 L 120,480 L 350,480 L 350,440" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <circle cx="350" cy="440" r="3" fill="#f85149"/>
+  <!-- GND (blanc/gris) HC-SR04 → GND ESP -->
+  <path d="M 260,620 L 260,590 L 110,590 L 110,500 L 370,500 L 370,460" stroke="#8b949e" stroke-width="1.8" fill="none"/>
+  <circle cx="370" cy="460" r="3" fill="#8b949e"/>
+  <!-- TRIG (violet) HC-SR04 → GPIO5/D5 -->
+  <path d="M 230,603 L 230,560 L 390,560 L 390,441" stroke="#bc8cff" stroke-width="1.8" fill="none" marker-end="url(#arr-ppl)"/>
+  <circle cx="390" cy="441" r="3" fill="#bc8cff"/>
+  <!-- ECHO (bleu) HC-SR04 → GPIO4/D4 -->
+  <path d="M 240,630 L 240,570 L 405,570 L 405,465" stroke="#58a6ff" stroke-width="1.8" fill="none" marker-end="url(#arr-blu)"/>
+  <circle cx="405" cy="465" r="3" fill="#58a6ff"/>
 
-  <!-- HC-SR04 VCC/GND -->
-  <path d="M160,530 L160,560 L410,560 L410,390" stroke="#f85149" stroke-width="1.5" fill="none" marker-end="url(#arr-red)"/>
-  <path d="M250,540 L250,570 L390,570 L390,400" stroke="#8b949e" stroke-width="1.5" fill="none" marker-end="url(#arr-gry)"/>
+  <!-- ─── DS3231 → ESP32 (I2C) ─── -->
+  <!-- VCC DS3231 → 3V3 -->
+  <path d="M 530,120 L 530,100 L 690,100 L 690,180 L 550,180 L 550,430" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <circle cx="550" cy="430" r="3" fill="#f85149"/>
+  <!-- GND DS3231 → GND -->
+  <path d="M 580,120 L 580,90 L 670,90 L 670,200 L 570,200 L 570,450" stroke="#8b949e" stroke-width="1.8" fill="none"/>
+  <circle cx="570" cy="450" r="3" fill="#8b949e"/>
+  <!-- SDA (bleu) → GPIO21 -->
+  <path d="M 470,135 L 470,220 L 420,220 L 420,170 L 410,170" stroke="#58a6ff" stroke-width="1.8" fill="none" marker-end="url(#arr-blu)"/>
+  <circle cx="410" cy="170" r="3" fill="#58a6ff"/>
+  <!-- SCL (jaune) → GPIO22 -->
+  <path d="M 520,150 L 520,240 L 435,240 L 435,195" stroke="#d29922" stroke-width="1.8" fill="none" marker-end="url(#arr-orn)"/>
+  <circle cx="435" cy="195" r="3" fill="#d29922"/>
 
-  <!-- DS3231 → ESP32 (I2C) -->
-  <path d="M220,135 L220,180 L390,180 L390,360" stroke="#58a6ff" stroke-width="1.5" fill="none" marker-end="url(#arr-blu)"/>
-  <path d="M280,135 L280,200 L420,200 L420,360" stroke="#58a6ff" stroke-width="1.5" fill="none" marker-end="url(#arr-blu)"/>
-  <text x="300" y="178" fill="#58a6ff" font-size="10">SDA → GPIO21</text>
-  <text x="330" y="198" fill="#58a6ff" font-size="10">SCL → GPIO22</text>
+  <!-- ─── PIEZO → ESP32 ─── -->
+  <!-- VCC Piezo → 3V3 -->
+  <path d="M 750,150 L 750,130 L 710,130 L 710,480 L 590,480 L 590,435" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <circle cx="590" cy="435" r="3" fill="#f85149"/>
+  <!-- GND Piezo → GND -->
+  <path d="M 800,170 L 800,145 L 730,145 L 730,500 L 610,500 L 610,455" stroke="#8b949e" stroke-width="1.8" fill="none"/>
+  <circle cx="610" cy="455" r="3" fill="#8b949e"/>
+  <!-- Signal (vert) Piezo → GPIO12 -->
+  <path d="M 795,120 L 795,100 L 830,100 L 830,300 L 640,300 L 640,460" stroke="#3fb950" stroke-width="1.8" fill="none" marker-end="url(#arr-grn)"/>
+  <circle cx="640" cy="460" r="3" fill="#3fb950"/>
 
-  <!-- DS3231 VCC/GND -->
-  <path d="M160,110 L160,80 L120,80 L120,400 L390,400" stroke="#f85149" stroke-width="1.5" fill="none"/>
-  <path d="M250,115 L250,85 L150,85 L150,410 L380,410" stroke="#8b949e" stroke-width="1.5" fill="none"/>
+  <!-- ─── BTP (bouton) → ESP32 ─── -->
+  <!-- Signal (orange) → GPIO15 -->
+  <path d="M 90,310 L 90,350 L 75,350 L 75,420 L 370,420 L 370,451" stroke="#d29922" stroke-width="1.8" fill="none" marker-end="url(#arr-orn)"/>
+  <circle cx="370" cy="451" r="3" fill="#d29922"/>
+  <!-- GND bouton → GND ESP -->
+  <path d="M 112,310 L 112,370 L 95,370 L 95,440 L 390,440 L 390,458" stroke="#8b949e" stroke-width="1.8" fill="none"/>
+  <circle cx="390" cy="458" r="3" fill="#8b949e"/>
+  <!-- Pull-up vers 3.3V via 10K -->
+  <path d="M 90,290 L 90,265 L 30,265 L 30,440 L 350,440 L 350,447" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <circle cx="350" cy="447" r="3" fill="#f85149"/>
 
-  <!-- PIEZO → ESP32 -->
-  <path d="M480,155 L480,340" stroke="#d29922" stroke-width="1.5" fill="none" marker-end="url(#arr-orn)"/>
-  <text x="490" y="240" fill="#d29922" font-size="10">IO signal → GPIO12</text>
+  <!-- ─── MX1508 → ESP32 ─── -->
+  <!-- IN1 (violet) GPIO13 -->
+  <path d="M 720,670 L 670,670 L 670,560 L 530,560 L 530,520" stroke="#bc8cff" stroke-width="1.8" fill="none" marker-end="url(#arr-ppl)"/>
+  <!-- IN2 (violet) GPIO14 -->
+  <path d="M 720,695 L 700,695 L 700,580 L 550,580 L 550,540" stroke="#bc8cff" stroke-width="1.8" fill="none" marker-end="url(#arr-ppl)"/>
+  <!-- IN3 (violet) GPIO27 -->
+  <path d="M 760,670 L 790,670 L 790,600 L 570,600 L 570,560" stroke="#bc8cff" stroke-width="1.8" fill="none" marker-end="url(#arr-ppl)"/>
+  <!-- IN4 (violet) GPIO26 -->
+  <path d="M 760,695 L 780,695 L 780,620 L 590,620 L 590,580" stroke="#bc8cff" stroke-width="1.8" fill="none" marker-end="url(#arr-ppl)"/>
+  <!-- VCC MX1508 → 5V/3V3 -->
+  <path d="M 710,640 L 710,630 L 610,630 L 610,610 L 610,440" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <!-- GND MX1508 → GND -->
+  <path d="M 770,720 L 770,740 L 630,740 L 630,650 L 630,460" stroke="#8b949e" stroke-width="1.8" fill="none"/>
 
-  <!-- Piezo VCC/GND -->
-  <path d="M520,135 L530,135 L530,380 L430,380" stroke="#f85149" stroke-width="1.5" fill="none"/>
-  <path d="M520,175 L550,175 L550,400 L430,400" stroke="#8b949e" stroke-width="1.5" fill="none"/>
-
-  <!-- TP4056 → ESP32 -->
-  <path d="M750,110 L750,80 L170,80 L170,390" stroke="#f85149" stroke-width="1.5" fill="none" marker-end="url(#arr-red)"/>
-  <path d="M750,150 L780,150 L780,410 L440,410" stroke="#8b949e" stroke-width="1.5" fill="none" marker-end="url(#arr-gry)"/>
-
-  <!-- MX1508 → ESP32 -->
-  <path d="M660,310 L620,310 L620,370" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#arr-ppl)"/>
-  <path d="M660,340 L600,340 L600,390" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#arr-ppl)"/>
-  <path d="M660,370 L580,370 L580,410" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#arr-ppl)"/>
-  <path d="M660,400 L560,400 L560,430" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#arr-ppl)"/>
-
-  <text x="555" y="306" fill="#bc8cff" font-size="10">IN1 → GPIO13</text>
-  <text x="555" y="336" fill="#bc8cff" font-size="10">IN2 → GPIO14</text>
-  <text x="555" y="366" fill="#bc8cff" font-size="10">IN3 → GPIO27</text>
-  <text x="555" y="396" fill="#bc8cff" font-size="10">IN4 → GPIO26</text>
-
-  <!-- MX1508 VCC/GND au niveau ESP32 -->
-  <path d="M660,280 L640,280 L640,380" stroke="#f85149" stroke-width="1.5" fill="none"/>
-  <path d="M660,430 L660,450 L520,450 L520,440" stroke="#8b949e" stroke-width="1.5" fill="none"/>
-
-  <!-- Moteurs → MX1508 -->
-  <path d="M790,310 L840,310" stroke="#3fb950" stroke-width="1.5" fill="none" marker-end="url(#arr-grn)"/>
-  <path d="M790,340 L840,340" stroke="#3fb950" stroke-width="1.5" fill="none" marker-end="url(#arr-grn)"/>
-  <text x="795" y="298" fill="#3fb950" font-size="10">Moteur A</text>
-  <path d="M790,390 L840,390" stroke="#3fb950" stroke-width="1.5" fill="none" marker-end="url(#arr-grn)"/>
-  <path d="M790,420 L840,420" stroke="#3fb950" stroke-width="1.5" fill="none" marker-end="url(#arr-grn)"/>
-  <text x="795" y="380" fill="#3fb950" font-size="10">Moteur B</text>
-
-  <!-- BTP (bouton) → ESP32 -->
-  <path d="M110,360 L110,390 L380,390" stroke="#d29922" stroke-width="1.5" fill="none" marker-end="url(#arr-orn)"/>
-  <text x="120" y="378" fill="#d29922" font-size="10">Signal → GPIO15</text>
-  <!-- BTP pull-up 3.3V -->
-  <path d="M110,340 L110,280 L70,280 L70,300 L90,300" stroke="#f85149" stroke-width="2" fill="none"/>
-  <text x="60" y="322" fill="#f85149" font-size="9">3.3V</text>
-
-  <!-- ============================================================ -->
-  <!-- COMPONENTS                                                    -->
-  <!-- ============================================================ -->
-
-  <!-- ESP32 S3 ZERO (center) -->
-  <g filter="url(#shadow)">
-    <rect x="320" y="390" width="140" height="70" rx="8" fill="#1c2333" stroke="#58a6ff" stroke-width="2"/>
-    <rect x="322" y="392" width="136" height="66" rx="7" fill="none" stroke="#58a6ff" stroke-width="0.5" opacity="0.3"/>
-    <text x="390" y="420" fill="#58a6ff" font-size="13" font-weight="700" text-anchor="middle">ESP32 S3</text>
-    <text x="390" y="436" fill="#58a6ff" font-size="11" font-weight="600" text-anchor="middle">ZERO</text>
-    <!-- Pins visuelles -->
-    <line x1="350" y1="460" x2="350" y2="470" stroke="#8b949e" stroke-width="0.8"/>
-    <line x1="370" y1="460" x2="370" y2="470" stroke="#8b949e" stroke-width="0.8"/>
-    <line x1="390" y1="460" x2="390" y2="470" stroke="#8b949e" stroke-width="0.8"/>
-    <line x1="410" y1="460" x2="410" y2="470" stroke="#8b949e" stroke-width="0.8"/>
-    <line x1="430" y1="460" x2="430" y2="470" stroke="#8b949e" stroke-width="0.8"/>
-  </g>
-
-  <!-- ESP32 GND / 3V3 / 5V -->
-  <text x="336" y="482" fill="#f85149" font-size="9">3.3V</text>
-  <text x="372" y="482" fill="#8b949e" font-size="9">GND</text>
-  <text x="404" y="482" fill="#f85149" font-size="9">5V</text>
-
-  <!-- HC-SR04 (bottom center) -->
-  <g filter="url(#shadow)">
-    <rect x="160" y="530" width="120" height="48" rx="6" fill="#1c2333" stroke="#d29922" stroke-width="1.5"/>
-    <text x="220" y="554" fill="#d29922" font-size="12" font-weight="700" text-anchor="middle">HC-SR04</text>
-    <text x="220" y="569" fill="#8b949e" font-size="9" text-anchor="middle">Ultrasons</text>
-    <!-- Yeux du capteur -->
-    <circle cx="185" cy="556" r="5" fill="#0d1117" stroke="#d29922" stroke-width="0.8"/>
-    <circle cx="255" cy="556" r="5" fill="#0d1117" stroke="#d29922" stroke-width="0.8"/>
-  </g>
-
-  <!-- DS3231 (top-left) -->
-  <g filter="url(#shadow)">
-    <rect x="160" y="110" width="120" height="50" rx="6" fill="#1c2333" stroke="#58a6ff" stroke-width="1.5"/>
-    <text x="220" y="131" fill="#58a6ff" font-size="12" font-weight="700" text-anchor="middle">DS3231</text>
-    <text x="220" y="148" fill="#8b949e" font-size="9" text-anchor="middle">RTC Horloge</text>
-  </g>
-
-  <!-- PIEZO (top-center) -->
-  <g filter="url(#shadow)">
-    <rect x="460" y="140" width="80" height="48" rx="30" fill="#1c2333" stroke="#d29922" stroke-width="1.5"/>
-    <text x="500" y="160" fill="#d29922" font-size="11" font-weight="600" text-anchor="middle">PIEZO</text>
-    <text x="500" y="175" fill="#8b949e" font-size="9" text-anchor="middle">🔊 Buzzer</text>
-  </g>
-
-  <!-- TP4056 (top-right) + Batterie -->
-  <g filter="url(#shadow)">
-    <rect x="700" y="95" width="120" height="55" rx="6" fill="#1c2333" stroke="#3fb950" stroke-width="1.5"/>
-    <text x="760" y="120" fill="#3fb950" font-size="12" font-weight="700" text-anchor="middle">TP4056</text>
-    <text x="760" y="137" fill="#8b949e" font-size="9" text-anchor="middle">Chargeur Li-Ion</text>
-  </g>
-  <!-- Batterie -->
-  <g filter="url(#shadow)">
-    <rect x="720" y="168" width="80" height="36" rx="4" fill="#1c2333" stroke="#f85149" stroke-width="1"/>
-    <text x="760" y="190" fill="#f85149" font-size="11" font-weight="600" text-anchor="middle">BAT + / -</text>
-  </g>
-  <line x1="760" y1="150" x2="760" y2="168" stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2"/>
-
-  <!-- MX1508 (right-center) -->
-  <g filter="url(#shadow)">
-    <rect x="660" y="280" width="130" height="55" rx="6" fill="#1c2333" stroke="#bc8cff" stroke-width="1.5"/>
-    <text x="725" y="304" fill="#bc8cff" font-size="12" font-weight="700" text-anchor="middle">MX1508</text>
-    <text x="725" y="320" fill="#8b949e" font-size="9" text-anchor="middle">Pont en H x2</text>
-  </g>
-  <!-- Label Moteur drivers inside -->
-  <rect x="660" y="340" width="130" height="18" rx="3" fill="#bc8cff" opacity="0.08"/>
-  <text x="725" y="352" fill="#8b949e" font-size="8" text-anchor="middle">IN1 IN2 IN3 IN4  |  VCC GND</text>
-
+  <!-- ─── Moteurs → MX1508 ─── -->
   <!-- Moteur A -->
-  <g filter="url(#shadow)">
-    <rect x="840" y="295" width="90" height="40" rx="20" fill="#1c2333" stroke="#3fb950" stroke-width="1.5"/>
-    <circle cx="855" cy="315" r="6" fill="#0d1117" stroke="#3fb950" stroke-width="0.8"/>
-    <text x="885" y="319" fill="#3fb950" font-size="11" font-weight="600" text-anchor="middle">Moteur A</text>
-  </g>
-
+  <path d="M 870,670 L 920,670" stroke="#3fb950" stroke-width="2" fill="none"/>
+  <path d="M 870,700 L 920,700" stroke="#3fb950" stroke-width="2" fill="none"/>
   <!-- Moteur B -->
+  <path d="M 870,770 L 920,770" stroke="#3fb950" stroke-width="2" fill="none"/>
+  <path d="M 870,800 L 920,800" stroke="#3fb950" stroke-width="2" fill="none"/>
+
+  <!-- ─── TP4056 → ESP32 ─── -->
+  <!-- OUT+ vers 5V ou 3V3 -->
+  <path d="M 1030,170 L 1020,170 L 1020,440 L 630,440" stroke="#f85149" stroke-width="1.8" fill="none"/>
+  <!-- OUT- vers GND -->
+  <path d="M 1030,210 L 1010,210 L 1010,460 L 650,460" stroke="#8b949e" stroke-width="1.8" fill="none"/>
+  <!-- BAT + / - -->
+  <path d="M 1030,255 L 1030,280" stroke="#f85149" stroke-width="2" fill="none"/>
+  <path d="M 1030,295 L 1030,320" stroke="#8b949e" stroke-width="2" fill="none"/>
+
+  <!-- ============================================================ -->
+  <!-- ESP32 S3 ZERO (center) — avEC PIN HEADERS DÉTAILLÉS         -->
+  <!-- ============================================================ -->
+
   <g filter="url(#shadow)">
-    <rect x="840" y="375" width="90" height="40" rx="20" fill="#1c2333" stroke="#3fb950" stroke-width="1.5"/>
-    <circle cx="855" cy="395" r="6" fill="#0d1117" stroke="#3fb950" stroke-width="0.8"/>
-    <text x="885" y="399" fill="#3fb950" font-size="11" font-weight="600" text-anchor="middle">Moteur B</text>
+    <!-- Carte ESP32 -->
+    <rect x="330" y="430" width="160" height="95" rx="8" fill="#1a202c" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="333" y="433" width="154" height="89" rx="6" fill="none" stroke="#21262d" stroke-width="0.5"/>
+    
+    <!-- Chip central -->
+    <rect x="380" y="460" width="60" height="30" rx="3" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+    <text x="410" y="480" fill="#58a6ff" font-size="10" font-weight="700" text-anchor="middle">ESP32-S3</text>
+    <text x="410" y="488" fill="#58a6ff" font-size="6" text-anchor="middle">ZERO</text>
+
+    <!-- ============ PIN HEADERS GAUCHE (Top→Bottom sur la vraie carte) ============ -->
+    <!-- Pin header gauche (x=330, haut vers bas) -->
+    <g stroke="#30363d" stroke-width="0.8">
+      <!-- Ligne de pins gauche -->
+      <line x1="330" y1="438" x2="322" y2="438"/><line x1="330" y1="448" x2="322" y2="448"/>
+      <line x1="330" y1="458" x2="322" y2="458"/><line x1="330" y1="468" x2="322" y2="468"/>
+      <line x1="330" y1="478" x2="322" y2="478"/><line x1="330" y1="488" x2="322" y2="488"/>
+      <line x1="330" y1="498" x2="322" y2="498"/><line x1="330" y1="508" x2="322" y2="508"/>
+      <line x1="330" y1="518" x2="322" y2="518"/><line x1="330" y1="528" x2="322" y2="528"/>
+    </g>
+    <!-- Pin header droit -->
+    <g stroke="#30363d" stroke-width="0.8">
+      <line x1="490" y1="438" x2="498" y2="438"/><line x1="490" y1="448" x2="498" y2="448"/>
+      <line x1="490" y1="458" x2="498" y2="458"/><line x1="490" y1="468" x2="498" y2="468"/>
+      <line x1="490" y1="478" x2="498" y2="478"/><line x1="490" y1="488" x2="498" y2="488"/>
+      <line x1="490" y1="498" x2="498" y2="498"/><line x1="490" y1="508" x2="498" y2="508"/>
+      <line x1="490" y1="518" x2="498" y2="518"/><line x1="490" y1="528" x2="498" y2="528"/>
+    </g>
+
+    <!-- Labels pins GAUCHE (ESP32 S3 ZERO mapping: broches gauche) -->
+    <text x="318" y="441" fill="#f85149" font-size="8" text-anchor="end">3V3</text>
+    <text x="318" y="451" fill="#f85149" font-size="8" text-anchor="end">EN</text>
+    <text x="318" y="461" fill="#58a6ff" font-size="8" text-anchor="end">IO4</text>
+    <text x="318" y="471" fill="#58a6ff" font-size="8" text-anchor="end">IO5</text>
+    <text x="318" y="481" fill="#58a6ff" font-size="8" text-anchor="end">IO6</text>
+    <text x="318" y="491" fill="#58a6ff" font-size="8" text-anchor="end">IO7</text>
+    <text x="318" y="501" fill="#58a6ff" font-size="8" text-anchor="end">IO15</text>
+    <text x="318" y="511" fill="#58a6ff" font-size="8" text-anchor="end">IO16</text>
+    <text x="318" y="521" fill="#8b949e" font-size="8" text-anchor="end">RXD0</text>
+    <text x="318" y="531" fill="#8b949e" font-size="8" text-anchor="end">TXD0</text>
+
+    <!-- Labels pins DROITE -->
+    <text x="502" y="441" fill="#f85149" font-size="8">5V</text>
+    <text x="502" y="451" fill="#8b949e" font-size="8">GND</text>
+    <text x="502" y="461" fill="#58a6ff" font-size="8">IO6</text>
+    <text x="502" y="471" fill="#58a6ff" font-size="8">IO7</text>
+    <text x="502" y="481" fill="#58a6ff" font-size="8">IO8</text>
+    <text x="502" y="491" fill="#58a6ff" font-size="8">IO9</text>
+    <text x="502" y="501" fill="#58a6ff" font-size="8">IO10</text>
+    <text x="502" y="511" fill="#8b949e" font-size="8">3V3</text>
+    <text x="502" y="521" fill="#8b949e" font-size="8">3V3</text>
+    <text x="502" y="531" fill="#8b949e" font-size="8">GND</text>
+
+    <!-- Titre sur la carte -->
+    <text x="410" y="455" fill="#8b949e" font-size="6" text-anchor="middle">ESP32-S3-ZERO</text>
   </g>
 
-  <!-- BTP - Bouton (left) -->
+  <!-- Points de connexion ESP32 mis en évidence -->
+  <!-- 3V3: (330, 438) -->
+  <circle cx="330" cy="440" r="4" fill="none" stroke="#f85149" stroke-width="1.5" opacity="0.6"/>
+  <!-- IO4: x=330, y=458 -->
+  <circle cx="330" cy="458" r="4" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <!-- IO5: x=330, y=468 -->
+  <circle cx="330" cy="468" r="4" fill="none" stroke="#bc8cff" stroke-width="1.5" opacity="0.6"/>
+  <!-- IO15: x=330, y=498 -->
+  <circle cx="330" cy="498" r="4" fill="none" stroke="#d29922" stroke-width="1.5" opacity="0.6"/>
+  <!-- GND: 490, 448 -->
+  <circle cx="490" cy="448" r="4" fill="none" stroke="#8b949e" stroke-width="1.5" opacity="0.6"/>
+  <!-- 5V: 490, 438 -->
+  <circle cx="490" cy="438" r="4" fill="none" stroke="#f85149" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- ============================================================ -->
+  <!-- HC-SR04 (bottom-left)                                        -->
+  <!-- ============================================================ -->
   <g filter="url(#shadow)">
-    <rect x="60" y="340" width="50" height="48" rx="24" fill="#1c2333" stroke="#d29922" stroke-width="1.5"/>
-    <text x="85" y="358" fill="#d29922" font-size="10" font-weight="600" text-anchor="middle">BTP</text>
-    <text x="85" y="374" fill="#8b949e" font-size="8" text-anchor="middle">Bouton</text>
-  </g>
-  <!-- Résistance 10K -->
-  <g>
-    <rect x="62" y="300" width="44" height="18" rx="2" fill="#1c2333" stroke="#8b949e" stroke-width="1"/>
-    <text x="84" y="313" fill="#8b949e" font-size="9" text-anchor="middle">10K Ω</text>
+    <rect x="150" y="620" width="130" height="55" rx="6" fill="#1a202c" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="215" y="643" fill="#58a6ff" font-size="12" font-weight="700" text-anchor="middle">HC-SR04</text>
+    <text x="215" y="658" fill="#8b949e" font-size="9" text-anchor="middle">📡 Ultrasons</text>
+    <!-- Yeux -->
+    <circle cx="168" cy="648" r="6" fill="#0d1117" stroke="#58a6ff" stroke-width="0.8"/>
+    <circle cx="262" cy="648" r="6" fill="#0d1117" stroke="#58a6ff" stroke-width="0.8"/>
+    <!-- Pins label -->
+    <text x="163" y="680" fill="#f85149" font-size="7">VCC</text>
+    <text x="195" y="680" fill="#bc8cff" font-size="7">TRIG</text>
+    <text x="230" y="680" fill="#58a6ff" font-size="7">ECHO</text>
+    <text x="268" y="680" fill="#8b949e" font-size="7">GND</text>
   </g>
 
   <!-- ============================================================ -->
-  <!-- ALIMENTATION / POWER RAILS                                   -->
+  <!-- DS3231 (top-left)                                             -->
   <!-- ============================================================ -->
-
-  <!-- Power rail -->
-  <line x1="120" y1="400" x2="440" y2="400" stroke="#f85149" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
-  <text x="140" y="394" fill="#f85149" font-size="8">3.3V rail</text>
-  <line x1="120" y1="410" x2="440" y2="410" stroke="#8b949e" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
-  <text x="140" y="424" fill="#8b949e" font-size="8">GND rail</text>
-
-  <!-- ============================================================ -->
-  <!-- LEGEND                                                        -->
-  <!-- ============================================================ -->
-
-  <g transform="translate(20, 620)">
-    <rect x="0" y="0" width="160" height="95" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-    <text x="10" y="18" fill="#e6edf3" font-size="11" font-weight="600">Légende</text>
-    <line x1="10" y1="30" x2="30" y2="30" stroke="#f85149" stroke-width="2"/>
-    <text x="36" y="34" fill="#8b949e" font-size="10">Alimentation (VCC/3.3V)</text>
-    <line x1="10" y1="46" x2="30" y2="46" stroke="#8b949e" stroke-width="2"/>
-    <text x="36" y="50" fill="#8b949e" font-size="10">GND / Masse</text>
-    <line x1="10" y1="62" x2="30" y2="62" stroke="#58a6ff" stroke-width="2"/>
-    <text x="36" y="66" fill="#8b949e" font-size="10">I2C (SDA / SCL)</text>
-    <line x1="10" y1="78" x2="30" y2="78" stroke="#d29922" stroke-width="2"/>
-    <text x="36" y="82" fill="#8b949e" font-size="10">Signal GPIO</text>
-    <line x1="10" y1="94" x2="30" y2="94" stroke="#bc8cff" stroke-width="2"/>
-    <text x="36" y="98" fill="#8b949e" font-size="10">Contrôle moteur</text>
+  <g filter="url(#shadow)">
+    <rect x="430" y="110" width="130" height="55" rx="6" fill="#1a202c" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="495" y="133" fill="#58a6ff" font-size="12" font-weight="700" text-anchor="middle">DS3231</text>
+    <text x="495" y="150" fill="#8b949e" font-size="9" text-anchor="middle">🕐 RTC Horloge</text>
+    <!-- Horloge IC -->
+    <rect x="475" y="140" width="40" height="18" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+    <!-- Pins -->
+    <text x="440" y="170" fill="#f85149" font-size="7">VCC</text>
+    <text x="475" y="170" fill="#8b949e" font-size="7">GND</text>
+    <text x="515" y="170" fill="#58a6ff" font-size="7">SDA</text>
+    <text x="550" y="170" fill="#d29922" font-size="7">SCL</text>
   </g>
 
-  <!-- Note -->
-  <text x="700" y="660" fill="#484f58" font-size="10">
-    ⚡ Alimentation : 3.3V / 5V via TP4056 + batterie Li-Ion
-  </text>
-  <text x="700" y="678" fill="#484f58" font-size="9">
-    🎯 Basé sur le schéma fourni — GPIO à vérifier selon ton code
-  </text>
-
-  <!-- GPIO table -->
-  <g transform="translate(760, 620)">
-    <rect x="0" y="0" width="220" height="100" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-    <text x="10" y="18" fill="#e6edf3" font-size="11" font-weight="600">Assignation GPIO</text>
-    <text x="10" y="34" fill="#8b949e" font-size="9">GPIO4  → HC-SR04 ECHO</text>
-    <text x="10" y="46" fill="#8b949e" font-size="9">GPIO5  → HC-SR04 TRIG</text>
-    <text x="10" y="58" fill="#8b949e" font-size="9">GPIO12 → Piezo Buzzer</text>
-    <text x="10" y="70" fill="#8b949e" font-size="9">GPIO15 → Bouton (BTP)</text>
-    <text x="10" y="82" fill="#8b949e" font-size="9">GPIO21 → DS3231 SDA</text>
-    <text x="10" y="94" fill="#8b949e" font-size="9">GPIO22 → DS3231 SCL</text>
-    <text x="120" y="34" fill="#8b949e" font-size="9">GPIO13 → MX1508 IN1</text>
-    <text x="120" y="46" fill="#8b949e" font-size="9">GPIO14 → MX1508 IN2</text>
-    <text x="120" y="58" fill="#8b949e" font-size="9">GPIO27 → MX1508 IN3</text>
-    <text x="120" y="70" fill="#8b949e" font-size="9">GPIO26 → MX1508 IN4</text>
+  <!-- ============================================================ -->
+  <!-- PIEZO (top)                                                   -->
+  <!-- ============================================================ -->
+  <g filter="url(#shadow)">
+    <rect x="740" y="120" width="80" height="50" rx="25" fill="#1a202c" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="780" y="140" fill="#3fb950" font-size="11" font-weight="600" text-anchor="middle">PIEZO</text>
+    <text x="780" y="155" fill="#8b949e" font-size="9" text-anchor="middle">🔊 Buzzer</text>
+    <!-- Pins -->
+    <text x="750" y="176" fill="#f85149" font-size="7">VCC</text>
+    <text x="795" y="176" fill="#8b949e" font-size="7">GND</text>
+    <text x="760" y="115" fill="#3fb950" font-size="7">SIG</text>
   </g>
+
+  <!-- ============================================================ -->
+  <!-- TP4056 + BATTERIE (top-right)                                 -->
+  <!-- ============================================================ -->
+  <g filter="url(#shadow)">
+    <!-- Module TP4056 -->
+    <rect x="990" y="150" width="90" height="55" rx="6" fill="#1a202c" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="1035" y="172" fill="#3fb950" font-size="11" font-weight="700" text-anchor="middle">TP4056</text>
+    <text x="1035" y="188" fill="#8b949e" font-size="8" text-anchor="middle">Chargeur Li-Ion</text>
+    <!-- Pins -->
+    <text x="998" y="210" fill="#f85149" font-size="7">OUT+</text>
+    <text x="1065" y="210" fill="#8b949e" font-size="7">OUT-</text>
+    <text x="998" y="255" fill="#f85149" font-size="7">BAT+</text>
+    <text x="1065" y="255" fill="#8b949e" font-size="7">BAT-</text>
+    <text x="998" y="225" fill="#8b949e" font-size="6" opacity="0.6">IN+</text>
+    <text x="1065" y="225" fill="#8b949e" font-size="6" opacity="0.6">IN-</text>
+    
+    <!-- Batterie -->
+    <rect x="1005" y="285" width="60" height="40" rx="5" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+    <text x="1035" y="305" fill="#f85149" font-size="9" font-weight="600" text-anchor="middle">Li-Ion</text>
+    <text x="1035" y="316" fill="#f85149" font-size="7" text-anchor="middle">Batterie</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- BTP (bouton + résistance 10K)                                 -->
+  <!-- ============================================================ -->
+  <g filter="url(#shadow)">
+    <!-- Bouton -->
+    <rect x="65" y="280" width="50" height="45" rx="22" fill="#1a202c" stroke="#d29922" stroke-width="1.5"/>
+    <text x="90" y="298" fill="#d29922" font-size="10" font-weight="600" text-anchor="middle">BTP</text>
+    <text x="90" y="313" fill="#8b949e" font-size="8" text-anchor="middle">Bouton</text>
+    <!-- Résistance 10K -->
+    <rect x="60" y="255" width="55" height="18" rx="3" fill="#1a202c" stroke="#8b949e" stroke-width="1"/>
+    <text x="87" y="268" fill="#8b949e" font-size="9" text-anchor="middle">10KΩ</text>
+    <!-- Ligne 3.3V -->
+    <text x="40" y="253" fill="#f85149" font-size="8">3.3V</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- MX1508 (right)                                                -->
+  <!-- ============================================================ -->
+  <g filter="url(#shadow)">
+    <rect x="710" y="640" width="150" height="80" rx="6" fill="#1a202c" stroke="#bc8cff" stroke-width="1.5"/>
+    <text x="785" y="663" fill="#bc8cff" font-size="12" font-weight="700" text-anchor="middle">MX1508</text>
+    <text x="785" y="680" fill="#8b949e" font-size="9" text-anchor="middle">🔄 Pont en H x2</text>
+    <!-- Pins label -->
+    <text x="722" y="712" fill="#bc8cff" font-size="8">IN1</text>
+    <text x="752" y="712" fill="#bc8cff" font-size="8">IN2</text>
+    <text x="782" y="712" fill="#bc8cff" font-size="8">IN3</text>
+    <text x="812" y="712" fill="#bc8cff" font-size="8">IN4</text>
+    <text x="722" y="725" fill="#f85149" font-size="7">VCC</text>
+    <text x="772" y="725" fill="#8b949e" font-size="7">GND</text>
+    <!-- Sorties moteur -->
+    <text x="850" y="670" fill="#3fb950" font-size="7">MA+</text>
+    <text x="850" y="700" fill="#3fb950" font-size="7">MA-</text>
+    <text x="850" y="770" fill="#3fb950" font-size="7">MB+</text>
+    <text x="850" y="800" fill="#3fb950" font-size="7">MB-</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- MOTEURS (right)                                               -->
+  <!-- ============================================================ -->
+  <g filter="url(#shadow)">
+    <!-- Moteur A -->
+    <rect x="920" y="650" width="80" height="40" rx="20" fill="#1a202c" stroke="#3fb950" stroke-width="1.5"/>
+    <circle cx="930" cy="670" r="5" fill="#0d1117" stroke="#3fb950" stroke-width="0.8"/>
+    <text x="960" y="674" fill="#3fb950" font-size="11" font-weight="600" text-anchor="middle">Moteur A</text>
+    
+    <!-- Moteur B -->
+    <rect x="920" y="750" width="80" height="40" rx="20" fill="#1a202c" stroke="#3fb950" stroke-width="1.5"/>
+    <circle cx="930" cy="770" r="5" fill="#0d1117" stroke="#3fb950" stroke-width="0.8"/>
+    <text x="960" y="774" fill="#3fb950" font-size="11" font-weight="600" text-anchor="middle">Moteur B</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- ALIMENTATION / POWER CONNECTIONS                              -->
+  <!-- ============================================================ -->
+  
+  <!-- 3.3V rail -->
+  <line x1="320" y1="442" x2="580" y2="442" stroke="#f85149" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+  <!-- GND rail -->
+  <line x1="320" y1="452" x2="600" y2="452" stroke="#8b949e" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+
+  <!-- ============================================================ -->
+  <!-- LÉGENDE                                                      -->
+  <!-- ============================================================ -->
+  <g transform="translate(30, 770)">
+    <rect x="0" y="0" width="500" height="110" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="15" y="20" fill="#e6edf3" font-size="12" font-weight="600">📋 Légende &amp; Notes</text>
+    
+    <!-- Couleurs -->
+    <rect x="15" y="30" width="20" height="4" rx="2" fill="#f85149"/>
+    <text x="40" y="34" fill="#8b949e" font-size="10">Alimentation (VCC / 3.3V / 5V)</text>
+    <rect x="15" y="44" width="20" height="4" rx="2" fill="#8b949e"/>
+    <text x="40" y="48" fill="#8b949e" font-size="10">GND / Masse</text>
+    <rect x="15" y="58" width="20" height="4" rx="2" fill="#58a6ff"/>
+    <text x="40" y="62" fill="#8b949e" font-size="10">I2C (SDA) / Signal HC-SR04 ECHO</text>
+    <rect x="15" y="72" width="20" height="4" rx="2" fill="#d29922"/>
+    <text x="40" y="76" fill="#8b949e" font-size="10">Signal GPIO (bouton, I2C SCL)</text>
+    <rect x="15" y="86" width="20" height="4" rx="2" fill="#bc8cff"/>
+    <text x="40" y="90" fill="#8b949e" font-size="10">Contrôle moteur (MX1508) / TRIG</text>
+    <rect x="15" y="100" width="20" height="4" rx="2" fill="#3fb950"/>
+    <text x="40" y="104" fill="#8b949e" font-size="10">Signal Piezo / Moteurs DC</text>
+  </g>
+
+  <!-- GPIO Table -->
+  <g transform="translate(560, 770)">
+    <rect x="0" y="0" width="510" height="110" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="15" y="20" fill="#e6edf3" font-size="12" font-weight="600">🧠 Assignation GPIO</text>
+    
+    <text x="15" y="38" fill="#58a6ff" font-size="9">D4  (IO4)  → HC-SR04 ECHO</text>
+    <text x="15" y="52" fill="#bc8cff" font-size="9">D5  (IO5)  → HC-SR04 TRIG</text>
+    <text x="15" y="66" fill="#3fb950" font-size="9">D12 (IO12) → Piezo Buzzer</text>
+    <text x="15" y="80" fill="#d29922" font-size="9">D15 (IO15) → Bouton BTP</text>
+    <text x="15" y="94" fill="#58a6ff" font-size="9">D21 (IO21) → DS3231 SDA (I2C)</text>
+    <text x="15" y="108" fill="#d29922" font-size="9">D22 (IO22) → DS3231 SCL (I2C)</text>
+
+    <text x="250" y="38" fill="#bc8cff" font-size="9">D13 (IO13) → MX1508 IN1</text>
+    <text x="250" y="52" fill="#bc8cff" font-size="9">D14 (IO14) → MX1508 IN2</text>
+    <text x="250" y="66" fill="#bc8cff" font-size="9">D27 (IO27) → MX1508 IN3</text>
+    <text x="250" y="80" fill="#bc8cff" font-size="9">D26 (IO26) → MX1508 IN4</text>
+    <text x="250" y="94" fill="#f85149" font-size="9">3.3V        → Alimentation</text>
+    <text x="250" y="108" fill="#f85149" font-size="9">5V          → Alimentation MX1508</text>
+  </g>
+
+  <!-- Titre -->
+  <text x="30" y="750" fill="#484f58" font-size="11">⚡ Alimentation : Batterie Li-Ion → TP4056 → 3.3V/5V régulé</text>
 
 </svg>
 
   <div class="footer">
-    Généré par Bob 🤖 · Schéma non contractuel, vérifie les PINs GPIO dans ton code
+    Schéma par Mike 🤝 Bob · Vérifie les broches GPIO selon ton code · Généré le 05/07/2026
   </div>
 </div>
 </html>
